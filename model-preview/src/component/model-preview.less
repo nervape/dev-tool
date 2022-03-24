@@ -1,0 +1,33 @@
+.model-preview {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+
+  background-color: grey;
+
+  .model-viewer-class {
+    width: 100%;
+    height: 100%;
+
+    .model-loading {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+
+      display: flex;
+      justify-content: center;
+      align-content: center;
+
+      .model-loading-gif {
+        margin: auto;
+        width: 200px;
+        height: 200px;
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "scripts": {
+    "test-mibao-sig": "yarn ts-node ./src/mibao-signature.ts",
+    "create-img-token-class": "yarn ts-node ./src/test-create-image-class.ts",
+    "create-img-3d-class": "yarn ts-node ./src/test-create-3d-class.ts",
+    "update-token-class": "yarn ts-node ./src/test-update-token-class.ts",
+    "get-token-classes": "yarn ts-node ./src/test-get-token-classes.ts",
+    "get-token-class-by-uuid": "yarn ts-node ./src/test-get-token-class-by-uuid.ts",
+    "distribute-token": "yarn ts-node ./src/test-distribute-token.ts",
+    "get-token-by-address": "yarn ts-node ./src/test-get-token-by-address.ts",
+    "get-token-by-token-uuid": "yarn ts-node ./src/test-get-token-by-token-uuid.ts",
+    "get-token-by-class-uuid": "yarn ts-node ./src/test-get-token-by-class-uuid.ts",
+    "get-token-by-type-args": "yarn ts-node ./src/test-get-token-by-type-args.ts",
+    "get-transfer-by-tx-uuid": "yarn ts-node ./src/test-get-transfer-by-tx-uuid.ts"
+  },
+  "dependencies": {
+    "@types/crypto-js": "^4.1.1",
+    "axios": "^0.27.2",
+    "crypto-js": "^4.1.1",
+    "moment": "^2.29.3"
+  },
+  "devDependencies": {
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  }
+}

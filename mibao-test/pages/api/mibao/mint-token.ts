@@ -21,10 +21,17 @@ export default async function handler(
     if (typeof token_class_uuid !== "string" || token_class_uuid === "") {
       throw `param "token_class_uuid:${token_class_uuid}" not string !!`;
     }
-    if (typeof addresses !== "string" || addresses === "") {
-      throw `param "addresses:${addresses}" not string !!`;
+    if (!(addresses instanceof Array) || addresses.length === 0) {
+      throw `param "addresses:${addresses}" can not empty !!`;
     }
-    const res = await openAPI.fnDistributeToken(token_class_uuid, [addresses]);
+
+    // demoResult.msg = "ok";
+    // demoResult.data = {
+    //   token_class_uuid,
+    //   addresses,
+    // };
+
+    const res = await openAPI.fnDistributeToken(token_class_uuid, addresses);
     console.error("distribte nft  complete");
     const tokenClass = res.data;
     console.log("distribte nft ", tokenClass);

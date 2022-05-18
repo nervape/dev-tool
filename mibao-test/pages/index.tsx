@@ -13,11 +13,14 @@ interface HomeState {
   createTotal: string;
 
   mintTokenClassUUID: string;
+  mintCount: number;
   mintAddress: string;
 
   updateTokenClassUUID: string;
   updateCoverImageUrl: string;
   updateRenderer: string;
+
+  env: "dev" | "pro";
 }
 
 export default class MyHome extends Component<HomeProps, HomeState> {
@@ -33,11 +36,14 @@ export default class MyHome extends Component<HomeProps, HomeState> {
       createTotal: "",
 
       mintTokenClassUUID: "9acca136-823e-4936-9f1e-bd219b942b58",
+      mintCount: 1,
       mintAddress: "ckt1qyqvjsyfr4x98csn29pyhpm9z66uz8jcuftsvh2mnc",
 
       updateTokenClassUUID: "5359ffeb-4162-437a-bc6c-621d411fb3dc",
       updateCoverImageUrl: "",
       updateRenderer: "",
+
+      env: "dev",
     };
   }
   render() {
@@ -166,6 +172,7 @@ export default class MyHome extends Component<HomeProps, HomeState> {
                 目标token的uuid: token_class_uuid :
                 <input
                   type="text"
+                  style={{ width: "450px" }}
                   defaultValue={this.state.mintTokenClassUUID}
                   onChange={(event) => {
                     this.setState({
@@ -178,6 +185,7 @@ export default class MyHome extends Component<HomeProps, HomeState> {
                 目标mint 地址: addresses :
                 <input
                   type="text"
+                  style={{ width: "450px" }}
                   defaultValue={this.state.mintAddress}
                   onChange={(event) => {
                     this.setState({
@@ -187,15 +195,31 @@ export default class MyHome extends Component<HomeProps, HomeState> {
                 />
               </p>
               <p>
+                目标mint 数量: count :
+                <input
+                  type="number"
+                  style={{ width: "450px" }}
+                  defaultValue={this.state.mintCount}
+                  onChange={(event) => {
+                    this.setState({
+                      mintCount: Number(event.target.value),
+                    });
+                  }}
+                />
+              </p>
+              <p>
                 <button
                   onClick={async () => {
                     console.log("铸造mNFT");
-
+                    const addresses = [];
+                    for (let i = 0; i < this.state.mintCount; ++i) {
+                      addresses.push(this.state.mintAddress);
+                    }
                     const result = await axios.post(
                       "http://localhost:3000/api/mibao/mint-token",
                       {
                         token_class_uuid: this.state.mintTokenClassUUID,
-                        addresses: this.state.mintAddress,
+                        addresses: addresses,
                       }
                     );
                     console.log(result);
